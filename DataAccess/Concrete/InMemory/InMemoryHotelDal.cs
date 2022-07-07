@@ -3,6 +3,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -44,6 +45,16 @@ namespace DataAccess.Concrete.InMemory
         public List<Hotel> GetAllByStar(int star)
         {
             return _hotels.Where(p => p.HotelStars == star).ToList();
+        }
+
+        public List<Hotel> GetAll(Expression<Func<Hotel, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Hotel Get(Expression<Func<Hotel, bool>> filter)
+        {
+            throw new NotImplementedException();
         }
     }
 }
