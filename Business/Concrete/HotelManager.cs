@@ -22,7 +22,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Hotel>> GetAll()
         {
-            throw new NotImplementedException();
+            return new DataResult<Hotel>;
         }
 
         public IDataResult<Hotel> GetById(int id)
