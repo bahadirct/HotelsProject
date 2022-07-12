@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,10 @@ namespace Business.Abstract
 {
     public interface IHotelService
     {
-        List<Hotel> GetAll();
+        IDataResult<List<Hotel>> GetAll();
+        IDataResult<Hotel> GetById(int id);
+        IDataResult<Hotel> GetByStar(int star);
+
+
     }
 }

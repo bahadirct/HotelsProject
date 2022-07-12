@@ -1,4 +1,5 @@
-﻿using Entities.Abstract;
+﻿
+using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Abstract
+namespace Core.DataAccess
 {
     /*İşlemlerde sadece veritabanı nesnelerinin kullanılması için yazılan bir kısıtlama (IEntity).
      Sadece IEntity'den implemente olan nesneler ( new() ) */

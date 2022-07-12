@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
-using DataAccess.Concrete.InMemory;
+using DataAccess.Concrete;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -12,17 +13,26 @@ namespace Business.Concrete
 {
     public class HotelManager : IHotelService
     {
-        IHotelDal _hotelDal;
+        private readonly IHotelDal _hotelDal;
 
         public HotelManager(IHotelDal hotelDal)
         {
-            _hotelDal = hotelDal;
+            _hotelDal=hotelDal; 
         }
 
-        public List<Hotel> GetAll()
+        public IDataResult<List<Hotel>> GetAll()
         {
-            //iş Kodları (Yetkiler,Kurallar)
-            return _hotelDal.GetAll();  
+            throw new NotImplementedException();
+        }
+
+        public IDataResult<Hotel> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDataResult<Hotel> GetByStar(int star)
+        {
+            throw new NotImplementedException();
         }
     }
 }

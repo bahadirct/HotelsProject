@@ -8,12 +8,12 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            HotelManager hotelManager = new HotelManager(new InMemoryHotelDal());
+            //HotelManager hotelManager = new HotelManager(new InMemoryHotelDal());
 
-            foreach (var hotel in hotelManager.GetAll())
-            {
-                Console.WriteLine(hotel.HotelName);
-            }
+            //foreach (var hotel in hotelManager.GetAll())
+            //{
+            //    Console.WriteLine(hotel.Name);
+            //}
         }
     }
 }

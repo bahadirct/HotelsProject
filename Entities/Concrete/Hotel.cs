@@ -1,4 +1,4 @@
-﻿using Entities.Abstract;
+﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +9,13 @@ namespace Entities.Concrete
 {
     public class Hotel : IEntity
     {
-        public int HotelId { get; set; }
-        public string HotelName { get; set; }
-        public string HotelAdress { get; set; }
-        public short HotelStars { get; set; }
-        public string HotelContact { get; set; }
-        public string HotelPhone { get; set; }
-        public string HotelUrl { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public int Stars { get; set; }
+        public string Contact { get; set; }
+        public string Phone { get; set; }
+        public string Url { get; set; }
         
     }
 }
