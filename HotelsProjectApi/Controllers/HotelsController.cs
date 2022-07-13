@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,16 +12,15 @@ namespace HotelsProjectApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class HotelController : ControllerBase
+    public class HotelsController : ControllerBase
     {
         IHotelService _hotelService;
 
-        public HotelController(IHotelService hotelService)
+        public HotelsController(IHotelService hotelService)
         {
             _hotelService = hotelService;
         }
 
-        //HotelManager _hotelManager;
 
         [HttpGet("getall")]
         public IActionResult GetAll()
@@ -60,5 +60,12 @@ namespace HotelsProjectApi.Controllers
 
             return BadRequest(result);
         }
+
+        [HttpPost("GetDbFile")]
+        public String Post(IFormFile file) 
+        {
+            return file.FileName;
+        }
+      
     }
 }

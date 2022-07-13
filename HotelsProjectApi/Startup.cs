@@ -1,3 +1,7 @@
+using Business.Abstract;
+using Business.Concrete;
+using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,8 +30,10 @@ namespace HotelsProjectApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            // IoC Container (Autofac,Ninject vs.)
             services.AddControllers();
+            services.AddSingleton<IHotelService,HotelManager>();
+            services.AddSingleton<IHotelDal, EfHotelDal>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelsProjectApi", Version = "v1" });
