@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
 using Core.Utilities.Helpers;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -36,10 +37,10 @@ namespace HotelsProjectApi.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyid")]
-        public  IActionResult GetById([FromQuery(Name = "id")] int id)
+        [HttpGet("getbyname")]
+        public IActionResult GetByName([FromQuery(Name = "name")] string name)
         {
-            var result =  _hotelService.GetById(id);
+            var result = _hotelService.GetByName(name);
 
             if (result.Success)
             {
@@ -52,7 +53,7 @@ namespace HotelsProjectApi.Controllers
         [HttpGet("getbystar")]
         public IActionResult GetByStar([FromQuery(Name = "star")] int star)
         {
-            var result =  _hotelService.GetAllByStar(star);
+            var result = _hotelService.GetAllByStar(star);
 
             if (result.Success)
             {
@@ -62,15 +63,25 @@ namespace HotelsProjectApi.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("GetDbFile")]
-        public IActionResult Post(IFormFile file) 
+        [HttpPost("uploadcsv")]
+        public IActionResult UploadCsv(IFormFile file)
         {
-            var result = FileHelper.GetDbFile(file.FileName, file);
+            var result = _hotelService.GetDbFile(file);
             if (result.Success)
                 return Ok(result);
 
             return BadRequest(result);
         }
-      
+
+        [HttpPost("add")]
+        public IActionResult Add(Hotel hotel)
+        {
+            var result = _hotelService.Add(hotel);
+            if (result.Success)
+                return Ok(result);
+
+            return BadRequest(result);
+        }
+
     }
 }
