@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
+using Core.Utilities.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -62,9 +63,13 @@ namespace HotelsProjectApi.Controllers
         }
 
         [HttpPost("GetDbFile")]
-        public String Post(IFormFile file) 
+        public IActionResult Post(IFormFile file) 
         {
-            return file.FileName;
+            var result = FileHelper.GetDbFile(file.FileName, file);
+            if (result.Success)
+                return Ok(result);
+
+            return BadRequest(result);
         }
       
     }

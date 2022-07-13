@@ -36,6 +36,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Hotel>(_hotelDal.Get(c => c.Id == id));
         }
 
+        //
         
     }
 }

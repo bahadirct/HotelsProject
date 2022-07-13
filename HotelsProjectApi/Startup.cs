@@ -32,8 +32,8 @@ namespace HotelsProjectApi
         {
             // IoC Container (Autofac,Ninject vs.)
             services.AddControllers();
-            services.AddSingleton<IHotelService,HotelManager>();
-            services.AddSingleton<IHotelDal, EfHotelDal>();
+            //services.AddSingleton<IHotelService,HotelManager>();
+            //services.AddSingleton<IHotelDal, EfHotelDal>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelsProjectApi", Version = "v1" });
