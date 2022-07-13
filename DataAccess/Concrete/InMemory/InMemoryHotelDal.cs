@@ -16,9 +16,9 @@ namespace DataAccess.Concrete.InMemory
         {
             //Veri tabanı sistemlerini Simüle etmek amaçlı test verileri
             _hotels = new List<Hotel>() {
-                new Hotel{Id=1,Name="Can Hotel",Address="Kocaeli",Phone="0262-1111111",Contact="Bahadır Can Topçu",Stars=3,Url="www.Canhotel.com" },
-                new Hotel{Id=1,Name="Bongo Hotel",Address="Muğla",Phone="0262-2222222",Contact="Sergen Yalçın",Stars=3,Url="www.Bongohotel.com" },
-                new Hotel{Id=1,Name="Holly Hotel",Address="Antalya",Phone="0262-3333333",Contact="Ahmet Dursun",Stars=3,Url="www.Hollyhotel.com" },
+                new Hotel{Name="Can Hotel",Address="Kocaeli",Phone="0262-1111111",Contact="Bahadır Can Topçu",Stars=3,Url="www.Canhotel.com" },
+                new Hotel{Name="Bongo Hotel",Address="Muğla",Phone="0262-2222222",Contact="Sergen Yalçın",Stars=3,Url="www.Bongohotel.com" },
+                new Hotel{Name="Holly Hotel",Address="Antalya",Phone="0262-3333333",Contact="Ahmet Dursun",Stars=3,Url="www.Hollyhotel.com" },
             };
         }
         public List<Hotel> GetAll()
@@ -32,13 +32,13 @@ namespace DataAccess.Concrete.InMemory
 
         public void Delete(Hotel hotel)
         {
-            Hotel hotelToDelete = _hotels.SingleOrDefault(p=>p.Id==hotel.Id);
+            Hotel hotelToDelete = _hotels.SingleOrDefault(p=>p.Name==hotel.Name);
             _hotels.Remove(hotel);
         }
 
         public void Update(Hotel hotel)
         {
-            Hotel hotelToUpdate = _hotels.SingleOrDefault(p => p.Id == hotel.Id);
+            Hotel hotelToUpdate = _hotels.SingleOrDefault(p => p.Name == hotel.Name);
             hotelToUpdate.Name = hotel.Name;
         }
 
@@ -53,6 +53,11 @@ namespace DataAccess.Concrete.InMemory
         }
 
         public Hotel Get(Expression<Func<Hotel, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddRange(IEnumerable<Hotel> entity)
         {
             throw new NotImplementedException();
         }
