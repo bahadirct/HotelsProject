@@ -51,7 +51,7 @@ namespace HotelsProjectApi.Controllers
         [HttpGet("getbystar")]
         public IActionResult GetByStar([FromQuery(Name = "star")] int star)
         {
-            var result =  _hotelService.GetByStar(star);
+            var result =  _hotelService.GetAllByStar(star);
 
             if (result.Success)
             {

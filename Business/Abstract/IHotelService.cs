@@ -12,7 +12,7 @@ namespace Business.Abstract
     {
         IDataResult<List<Hotel>> GetAll();
         IDataResult<Hotel> GetById(int id);
-        IDataResult<Hotel> GetByStar(int star);
+        IDataResult<Hotel> GetAllByStar(int star);
 
 
     }

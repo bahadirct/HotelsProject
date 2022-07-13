@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
@@ -22,17 +23,19 @@ namespace Business.Concrete
 
         public IDataResult<List<Hotel>> GetAll()
         {
-            return new DataResult<Hotel>;
+            return new SuccessDataResult<List<Hotel>>(_hotelDal.GetAll(),Messages.HotelList);
+        }
+
+        public IDataResult<Hotel> GetAllByStar(int stars)
+        {
+            return new SuccessDataResult<Hotel>(_hotelDal.Get(c => c.Stars == stars));
         }
 
         public IDataResult<Hotel> GetById(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Hotel>(_hotelDal.Get(c => c.Id == id));
         }
 
-        public IDataResult<Hotel> GetByStar(int star)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
