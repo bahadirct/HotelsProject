@@ -90,7 +90,7 @@ namespace Business.Concrete
                 //_hotelDal.AddRange(records);
                 this.AddRange(records);
 
-                return new Result(true, "Successful");
+                return new Result(true, "Dosya Yüklendi");
             }
             catch (Exception ex)
             {

@@ -32,6 +32,7 @@ namespace HotelsProjectApi
         {
             // IoC Container (Autofac,Ninject vs.)
             services.AddControllers();
+            services.AddCors();
             //services.AddSingleton<IHotelService,HotelManager>();
             //services.AddSingleton<IHotelDal, EfHotelDal>();
             services.AddSwaggerGen(c =>
@@ -49,6 +50,8 @@ namespace HotelsProjectApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HotelsProjectApi v1"));
             }
+
+            app.UseCors(builder=>builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
