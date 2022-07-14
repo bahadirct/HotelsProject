@@ -17,6 +17,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Business.Concrete
 {
@@ -24,6 +25,7 @@ namespace Business.Concrete
     {
         private readonly IHotelDal _hotelDal;
         static string directory = "wwwroot";
+        static string path = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot/DbFiles/hotel");
 
         public HotelManager(IHotelDal hotelDal)
         {
@@ -97,15 +99,51 @@ namespace Business.Concrete
 
         }
 
-        public IResult WriteAsJson(string path, List<Hotel> hotels)
+        public IResult WriteAsJson()
         {
-            throw new NotImplementedException();
+            string jsonValue = JsonConvert.SerializeObject(_hotelDal.GetAll());
+
+            if (!File.Exists(path))
+            {
+                using (var writer = new StreamWriter(path+".json"))
+                {
+                    writer.Write(jsonValue);
+                }
+                return new Result(true, "JSON dosyası oluşturuldu");
+            }
+            return new Result(false, "İşlem başarısız");
         }
 
-        public IResult WriteAsXml(string path, List<Hotel> hotels)
+        public IResult WriteAsXml()
         {
-            throw new NotImplementedException();
+            if (!File.Exists(path))
+            {
+                using (var writer = XmlWriter.Create(path+".xml"))
+                {
+                    var columnNames = typeof(Hotel).GetProperties().Select(p => p.Name).ToArray();
+                    writer.WriteStartDocument();
+                    foreach (var hotel in _hotelDal.GetAll())
+                    {
+                        writer.WriteStartElement(columnNames[1]);
+                        writer.WriteValue(hotel.Name);
+                        writer.WriteStartElement(columnNames[2]);
+                        writer.WriteValue(hotel.Address);
+                        writer.WriteStartElement(columnNames[3]);
+                        writer.WriteValue(hotel.Stars);
+                        writer.WriteStartElement(columnNames[4]);
+                        writer.WriteValue(hotel.Contact);
+                        writer.WriteStartElement(columnNames[5]);
+                        writer.WriteValue(hotel.Phone);
+                        writer.WriteStartElement(columnNames[6]);
+                        writer.WriteValue(hotel.Url);
+                    }
+                    writer.WriteEndElement();
+                }
+                return new Result(true, "XML dosyası oluşturuldu.");
+            }
+            return new Result(false, "İşlem başarısız");
         }
+    
 
         [ValidationAspect(typeof(HotelValidator))]
         public IResult Add(Hotel hotel)

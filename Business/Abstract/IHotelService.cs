@@ -16,8 +16,8 @@ namespace Business.Abstract
         IDataResult<List<Hotel>> GetAll();
         IDataResult<Hotel> GetByName(string name);
         IDataResult<Hotel> GetAllByStar(int star);
-        IResult WriteAsJson(string path, List<Hotel> hotels);
-        IResult WriteAsXml(string path, List<Hotel> hotels);
+        IResult WriteAsJson();
+        IResult WriteAsXml();
         IResult GetDbFile(IFormFile file);
 
     }

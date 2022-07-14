@@ -82,5 +82,24 @@ namespace HotelsProjectApi.Controllers
             return BadRequest(result);
         }
 
+        [HttpPost("WriteAsJson")]
+        public IActionResult WriteAsJson()
+        {
+            var result = _hotelService.WriteAsJson(); 
+            if (result.Success)
+                return Ok(result);
+
+            return BadRequest(result);
+        }
+
+        [HttpPost("WriteAsXml")]
+        public IActionResult WriteAsXml()
+        {
+            var result = _hotelService.WriteAsXml();
+            if (result.Success)
+                return Ok(result);
+
+            return BadRequest(result);
+        }
     }
 }
