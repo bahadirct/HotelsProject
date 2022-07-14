@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -44,6 +46,8 @@ namespace Business.Concrete
             return new SuccessDataResult<Hotel>(_hotelDal.Get(c => c.Name.Contains(name)));
         }
         //valid
+
+        [ValidationAspect(typeof(HotelValidator))]
         public IResult GetDbFile(IFormFile file)
         {
             try
@@ -80,9 +84,9 @@ namespace Business.Concrete
                 }
 
                 //TODO: validation rule buraya eklenebiliyorsa hotelDal kullan yoksa this olanı kullan.
-
-                _hotelDal.AddRange(records);
-                //this.AddRange(records);
+                
+                //_hotelDal.AddRange(records);
+                this.AddRange(records);
 
                 return new Result(true, "Successful");
             }
@@ -103,17 +107,18 @@ namespace Business.Concrete
             throw new NotImplementedException();
         }
 
+        [ValidationAspect(typeof(HotelValidator))]
         public IResult Add(Hotel hotel)
         {
             _hotelDal.Add(hotel);
-            return new SuccessResult(Messages.HotelList);
+            return new SuccessResult(Messages.HotelsAdded);
         }
 
-
+        [ValidationAspect(typeof(HotelValidator))]
         public IResult AddRange(IEnumerable<Hotel> hotel)
         {
             _hotelDal.AddRange(hotel);
-            return new SuccessResult(Messages.HotelList);
+            return new SuccessResult(Messages.HotelsAdded);
         }
 
         //

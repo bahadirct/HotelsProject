@@ -19,7 +19,7 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(p => p.Name).NotEmpty();
             RuleFor(p => p.Address).NotEmpty();
             RuleFor(p => p.Contact).NotEmpty();
-            RuleFor(p => p.Stars).NotEmpty();
+           // RuleFor(p => p.Stars).NotEmpty();
             RuleFor(p => p.Name).Must(BeValidUtf8).WithMessage(Messages.StarsInvalid);
             RuleFor(p => p.Url).Must(BeValidUrl).WithMessage(Messages.UrlInvalid);
         }
