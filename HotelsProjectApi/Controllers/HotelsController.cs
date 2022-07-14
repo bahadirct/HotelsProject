@@ -82,7 +82,7 @@ namespace HotelsProjectApi.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("WriteAsJson")]
+        [HttpGet("WriteAsJson")]
         public IActionResult WriteAsJson()
         {
             var result = _hotelService.WriteAsJson(); 
@@ -92,7 +92,7 @@ namespace HotelsProjectApi.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("WriteAsXml")]
+        [HttpGet("WriteAsXml")]
         public IActionResult WriteAsXml()
         {
             var result = _hotelService.WriteAsXml();
