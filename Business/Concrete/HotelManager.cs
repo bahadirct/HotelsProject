@@ -6,7 +6,6 @@ using CsvHelper.Configuration;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete;
-using Entities.Views;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
@@ -26,13 +25,13 @@ namespace Business.Concrete
 
         public HotelManager(IHotelDal hotelDal)
         {
-            _hotelDal=hotelDal; 
+            _hotelDal = hotelDal;
         }
 
         public IDataResult<List<Hotel>> GetAll()
         {
             //JsonConvert.SerializeObject(GELENDATA)
-            return new SuccessDataResult<List<Hotel>>(_hotelDal.GetAll(),Messages.HotelList);
+            return new SuccessDataResult<List<Hotel>>(_hotelDal.GetAll(), Messages.HotelList);
         }
 
         public IDataResult<Hotel> GetAllByStar(int stars)
@@ -81,7 +80,7 @@ namespace Business.Concrete
                 }
 
                 //TODO: validation rule buraya eklenebiliyorsa hotelDal kullan yoksa this olanı kullan.
-                
+
                 _hotelDal.AddRange(records);
                 //this.AddRange(records);
 
@@ -109,7 +108,6 @@ namespace Business.Concrete
             _hotelDal.Add(hotel);
             return new SuccessResult(Messages.HotelList);
         }
-
 
 
         public IResult AddRange(IEnumerable<Hotel> hotel)

@@ -1,6 +1,5 @@
 ﻿using Core.Utilities.Results;
 using Entities.Concrete;
-using Entities.Views;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
